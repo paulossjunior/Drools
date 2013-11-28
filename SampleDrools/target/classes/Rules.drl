@@ -2,9 +2,38 @@ package br.edu.sr.ifes.mpn.model;
 
 import br.edu.sr.ifes.mpn.model.*;
 
-rule "basic rule"
-when 
- Account (balance < 100)
-then 
- System.out.println ("Account balance is less than 100");
- end
+rule "addressRequired"
+	when 
+	 	$C:Customer (address == null)
+	then
+	 	System.out.println ("==>Usuario "+$C.getFirstName()+" Nao possui endereço"); 
+end
+
+rule "phoneNumberRequired"
+	when 
+		$C:Customer (phoneNumber == null || == " ")
+	then
+	System.out.println ("==>Usuario "+$C.getFirstName()+" Nao possui telefone");
+end
+
+rule "accountOwnerRequired"
+	when 
+		$account :Account (owner == null)
+	then
+	System.out.println ("==>Conta nao possui dono");
+end	
+
+rule "accountBalanceAtLeast"
+	when 
+		$account :Account (balance < 100 )
+	then
+	System.out.println ("==>Valor da saldo é menor que 100");
+end		
+
+rule "studentAccountCustomerAgeLessThan"
+	when 
+		$c : Customer (idade() >= 27 )
+		$a :Account (owner == $c, type == AccountType.Student )
+	then
+	System.out.println ("==>Consumidor nao eh estudante");
+end			
