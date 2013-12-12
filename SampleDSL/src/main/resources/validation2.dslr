@@ -1,0 +1,11 @@
+package br.edu.sr.ifes.mpn.model;
+import br.edu.sr.ifes.mpn.model.*;
+expander validation2.dsl
+
+rule "Account USD"
+	when
+		There is an Account that has owner equal to null and has balance equal to 100
+	then
+		Display error 	
+end
+

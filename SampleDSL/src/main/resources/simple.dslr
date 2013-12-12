@@ -1,0 +1,10 @@
+package br.edu.sr.ifes.mpn.model;
+import br.edu.sr.ifes.mpn.model.*;
+
+expander simple.dsl
+rule "hello rule"
+  when
+    There is a Customer with firstName "David"
+  then
+    Greet Customer
+end
